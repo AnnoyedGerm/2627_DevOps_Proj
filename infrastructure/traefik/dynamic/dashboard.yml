@@ -1,0 +1,10 @@
+http:
+  routers:
+    traefik-dashboard:
+      rule: "Host(`server.lab.home.arpa`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+      service: "api@internal"
+      entryPoints:
+        - websecure
+      middlewares:
+        - authelia-forward-auth
+      tls: {}

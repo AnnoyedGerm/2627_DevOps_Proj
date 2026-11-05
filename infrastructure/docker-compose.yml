@@ -1,0 +1,32 @@
+services:
+  traefik:
+    image: traefik:v3.7.17
+    ports: 
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/dynamic:/etc/traefik/dynamic:ro
+      - ./traefik/certs:/etc/traefik/certs:ro
+
+    networks:
+      - proxy
+  
+  authelia:
+    image: authelia/authelia:latest
+    user: "1000:1000"
+    environment:
+      AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /secrets/storage_key
+      AUTHELIA_SESSION_SECRET_FILE: /secrets/session_secret
+      AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE: /secrets/jwt_secret
+    volumes:
+      - ./authelia/config:/config
+      - ./authelia/data:/data
+      - ./authelia/secrets:/secrets:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: proxy

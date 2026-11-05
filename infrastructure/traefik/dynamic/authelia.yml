@@ -1,0 +1,21 @@
+http:
+  routers:
+    authelia-portal:
+      rule: "Host(`auth.lab.home.arpa`)"
+      entryPoints:
+        - websecure
+
+      service: authelia-backend
+      tls: {}
+
+  services:
+    authelia-backend:
+      loadbalancer:
+        servers:
+          - url: "http://authelia:9091"
+
+  middlewares:
+    authelia-forward-auth:
+      forwardAuth:
+        address: "http://authelia:9091/api/authz/forward-auth"
+        trustForwardHeader: true
