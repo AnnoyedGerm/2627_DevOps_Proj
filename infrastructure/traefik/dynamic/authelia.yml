@@ -1,7 +1,7 @@
 http:
   routers:
     authelia-portal:
-      rule: "Host(`auth.lab.home.arpa`)"
+      rule: "Host(`auth.nexovault.cc`)"
       entryPoints:
         - websecure
 

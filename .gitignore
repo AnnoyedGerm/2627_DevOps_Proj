@@ -1,0 +1,10 @@
+/infrastructure/traefik/certs/
+
+/infrastructure/authelia/secrets/
+/infrastructure/authelia/data/
+/infrastructure/authelia/config/users.yml
+
+.env
+**/.env
+
+/infrastructure/traefik/acme.json

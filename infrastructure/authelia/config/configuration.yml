@@ -7,6 +7,8 @@ access_control:
   rules:
     - domain: server.lab.home.arpa
       policy: one_factor
+    - domain: test.nexovault.cc
+      policy: one_factor
 
 session:
   cookies:
@@ -14,6 +16,9 @@ session:
       authelia_url: https://auth.lab.home.arpa
       default_redirection_url: https://server.lab.home.arpa/dashboard/
 
+    - domain: nexovault.cc
+      authelia_url: https://auth.nexovault.cc
+      default_redirection_url: https://test.nexovault.cc/dashboard/
 storage:
   local:
     path: /data/db.sqlite3

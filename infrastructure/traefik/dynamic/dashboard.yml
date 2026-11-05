@@ -1,7 +1,7 @@
 http:
   routers:
     traefik-dashboard:
-      rule: "Host(`server.lab.home.arpa`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+      rule: "Host(`test.nexovault.cc`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
       service: "api@internal"
       entryPoints:
         - websecure

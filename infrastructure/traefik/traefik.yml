@@ -21,3 +21,11 @@ providers:
   file:
     directory: "/etc/traefik/dynamic"
     watch: true
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: lukas.van.dyck@gmail.com
+      storage: /etc/traefik/acme.json
+      dnsChallenge:
+        provider: cloudflare

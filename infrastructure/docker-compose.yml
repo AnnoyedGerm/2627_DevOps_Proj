@@ -4,12 +4,13 @@ services:
     ports: 
       - "80:80"
       - "443:443"
+    environment:
+            CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
     volumes:
       - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/dynamic:/etc/traefik/dynamic:ro
-      - ./traefik/certs:/etc/traefik/certs:ro
-
+      - ./traefik/acme.json:/etc/traefik/acme.json
     networks:
       - proxy
   
@@ -26,6 +27,16 @@ services:
       - ./authelia/secrets:/secrets:ro
     networks:
       - proxy
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - proxy
+
+
 
 networks:
   proxy:

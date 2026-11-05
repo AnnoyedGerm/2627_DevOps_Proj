@@ -1,4 +1,10 @@
 tls:
-  certificates:
-    - certFile: /etc/traefik/certs/lab.pem
-      keyFile: /etc/traefik/certs/lab-key.pem
+  stores:
+    default:
+      defaultGeneratedCert:
+        resolver: letsencrypt
+        domain:
+          main: nexovault.cc
+          sans:
+            - "auth.nexovault.cc"
+            - "test.nexovault.cc"
