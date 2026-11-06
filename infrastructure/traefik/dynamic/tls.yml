@@ -7,4 +7,5 @@ tls:
           main: nexovault.cc
           sans:
             - "auth.nexovault.cc"
-            - "test.nexovault.cc"
+            - "admin.nexovault.cc"
+

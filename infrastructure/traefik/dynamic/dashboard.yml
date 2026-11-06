@@ -1,10 +1,10 @@
 http:
   routers:
     traefik-dashboard:
-      rule: "Host(`test.nexovault.cc`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+      rule: "Host(`admin.nexovault.cc`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
       service: "api@internal"
       entryPoints:
-        - websecure
+        - adminsecure
       middlewares:
         - authelia-forward-auth
       tls: {}

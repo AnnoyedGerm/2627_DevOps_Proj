@@ -1,8 +1,0 @@
-http:
-  routers:
-    nexovault-test:
-      rule: "Host(`test.nexovault.cc`)"
-      entryPoints:
-        - websecure
-      tls: {}
-      service: api@internal
