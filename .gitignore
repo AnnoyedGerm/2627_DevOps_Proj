@@ -9,3 +9,8 @@
 
 /infrastructure/traefik/acme.json
 
+
+applications/website/frontend/node_modules/
+applications/website/frontend/dist/
+applications/website/frontend/.angular/
+applications/website/frontend/.env

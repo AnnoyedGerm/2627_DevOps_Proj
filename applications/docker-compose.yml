@@ -1,0 +1,8 @@
+services:
+  website:
+    build: 
+      context: ./website
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - proxy

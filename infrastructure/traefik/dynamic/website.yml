@@ -1,0 +1,29 @@
+http:
+  routers:
+    website:
+      rule: "Host(`info.nexovault.cc`)"
+      entrypoints:
+        - websecure
+      service: website
+      tls: {}
+
+    redirect:
+      rule: "Host(`nexovault.cc`)"
+      entrypoints: websecure
+      service: noop@internal
+      middlewares:
+        - redirect-to-documentation
+      tls: {}
+
+  middlewares:
+    redirect-to-documentation:
+      redirectRegex:
+        regex: "^https://nexovault\\.cc(.*)"
+        replacement: "https://info.nexovault.cc${1}"
+        permanent: true
+
+  services:
+    website:
+      loadbalancer:
+        servers:
+          - url: "http://website:80"
