@@ -1,8 +1,9 @@
 services:
   website:
-    build: 
+    build:
       context: ./website
       dockerfile: Dockerfile
+      network: host #uses the host(=server network) network during the build
     restart: unless-stopped
     networks:
       - proxy
@@ -10,3 +11,4 @@ services:
 networks:
   proxy:
     external: true
+

@@ -8,4 +8,6 @@ tls:
           sans:
             - "auth.nexovault.cc"
             - "admin.nexovault.cc"
+            - "info.nexovault.cc"
+
 
