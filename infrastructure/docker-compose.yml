@@ -5,6 +5,7 @@ services:
       - "80:80"
       - "192.168.0.20:443:443"
       - "10.13.13.1:443:8443"
+    restart: unless-stopped
     environment:
             CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
     volumes:
@@ -18,6 +19,7 @@ services:
   authelia:
     image: authelia/authelia:latest
     user: "1000:1000"
+    restart: unless-stopped
     environment:
       AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /secrets/storage_key
       AUTHELIA_SESSION_SECRET_FILE: /secrets/session_secret
@@ -31,6 +33,7 @@ services:
 
   cloudflared:
     image: cloudflare/cloudflared:latest
+    restart: unless-stopped
     command: tunnel --no-autoupdate run
     environment:
       TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
